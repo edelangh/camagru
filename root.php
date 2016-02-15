@@ -1,8 +1,7 @@
 <?PHP
 
-$GLOBALS["root"] = Array();
-
-$GLOBALS["root"]["login"] = "controllers/login.php";
-$GLOBALS["root"]["acceuil"] = "controllers/acceuil.php";
-
+$GLOBALS["root"] = [
+"login" => "controllers/login.php",
+"acceuil" => "controllers/acceuil.php",
+];
 ?>

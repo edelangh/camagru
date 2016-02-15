@@ -1,3 +1,3 @@
 <?PHP
-	$GLOBALS["ROOT_PATH"] = $GLOBALS["PWD"];
+//	$GLOBALS["ROOT_PATH"] = $GLOBALS["PWD"];
 ?>

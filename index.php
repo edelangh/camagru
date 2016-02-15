@@ -2,9 +2,12 @@
 	require_once("config.php");
 require_once("root.php");
 
-$root = $GLOBALS["root"][$_GET["href"]];
+if (isset($_GET["href"]) && isset($GLOBALS["root"][$_GET["href"]]))
+	$root = $GLOBALS["root"][$_GET["href"]];
+else
+	$root = "";
 if ($root)
 	require_once($root);
 else
-	require_once($GLOBALS["root"]["404"]);
+	require_once("./index.php");
 ?>
