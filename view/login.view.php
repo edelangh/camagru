@@ -1,0 +1,1 @@
+<a href="index.php?href=login&action=inscription">hey clic !</a>

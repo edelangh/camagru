@@ -1,6 +1,6 @@
 <?PHP
-	require_once("config.php");
-require_once("root.php");
+require_once("config/config.php");
+include("config/root.php");
 
 if (isset($_GET["href"]) && isset($GLOBALS["root"][$_GET["href"]]))
 	$root = $GLOBALS["root"][$_GET["href"]];
