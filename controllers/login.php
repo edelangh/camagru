@@ -1,5 +1,4 @@
 <?php
-$local_path = '../';
 require_once("model/user.model.php");
 if (isset($_GET['action']))
 {

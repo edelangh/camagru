@@ -17,3 +17,8 @@ views:
 	gallery
 	profile
 	montage
+
+
+bonus:
+
+js sur le formulaire d'inscription
