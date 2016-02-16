@@ -45,4 +45,6 @@ Include "/nfs/zfs-student-3/users/edelangh/mamp/apps/camagru/conf/httpd-vhosts.c
 config pour les mail:
 dans le php.ini
 	rechercher sendmail_path / decomenter la ligne et ajouter son email a la fin
-	"sendmail_path = "env -i /usr/sbin/sendmail -t -i fpage@student.42.fr""
+```
+	sendmail_path = "env -i /usr/sbin/sendmail -t -i fpage@student.42.fr"
+```
