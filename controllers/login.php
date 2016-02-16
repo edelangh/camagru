@@ -14,6 +14,11 @@ if (isset($_GET['action']))
 			require_once("view/login.view.php");
 		}
 	}
+	else if ($_GET['action'] == "logout")
+	{
+		disconnect();
+		header("Location:index.php");
+	}
 }
 else
 	require_once("view/login.view.php");

@@ -82,6 +82,12 @@ function valide_account($token)
 	}
 }
 
+function disconnect()
+{
+	if (isset($_SESSION['user']))
+		unset($_SESSION['user']);
+}
+
 function connect($name, $password)
 {
 	global $db;
