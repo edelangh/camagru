@@ -14,6 +14,19 @@ function name_already_use($name)
 		return true;
 }
 
+function send_token_mail($mail)
+{
+	$token = uniqid();
+	$chaine = "gdhjsamciomklas.ndk.lmcdusailshbhdjka";
+	$token = substr($chaine, rand(0, strlen($chaine) - 5), 5).$token;
+	$token = sha1($token);
+	$message = "Bonjour merci de cliquer sur ce lien pour valider votre compte Camagru !\nhttp://camagru.local.42.fr/camagru/index.php?href=inscription&action=validation&token=".$token;
+	if (!mail($mail, "Validation de votre compte Camagru", $message))
+		return false;
+	else
+		return $token;
+}
+
 function insert_user_to_db($name, $mail, $pass, $pass2)
 {
 	global $db;
@@ -38,7 +51,12 @@ function insert_user_to_db($name, $mail, $pass, $pass2)
 		exit();
 	}
 
-	$token = uniqid();
+	$token = send_token_mail($mail);
+	if ($token == false)
+	{
+		header("Location:?href=inscription&error=err_mail");
+		exit();
+	}
 	echo $token;
 	exit();
 	$req = $db->prepare("INSERT INTO `camagru`.`users` (`name`, `mail`, `password`, `token_verif`) VALUES (:name, :mail, :pass, :token)");

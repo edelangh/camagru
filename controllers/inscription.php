@@ -12,21 +12,15 @@ if (isset($_GET['action']))
 else if(isset($_GET['error']))
 {
 	if ($_GET['error'] == "name_use")
-	{
 		echo "Ce nom d'utilisateur est deja utilise.";
-	}
 	if ($_GET['error'] == "bad_mail")
-	{
 		echo "Votre email n'a pas l'air valide.";
-	}
-	if ($_GET['error'] == "not_same_pass")
-	{
+			if ($_GET['error'] == "not_same_pass")
 		echo "Les mots de passe ne corresponde pas.";
-	}
 	if ($_GET['error'] == "small_pass")
-	{
 		echo "Votre mot de passe est trop petit.";
-	}
+	if ($_GET['error'] == "err_mail")
+		echo "Une erreur a ete rencontre lors de l'envois du mail.";
 	require_once("view/inscription.view.php");
 }
 else
