@@ -7,7 +7,11 @@ if (isset($_GET['action']))
 	{
 		insert_user_to_db($_POST['name'], $_POST['mail'], $_POST['pass'], $_POST['pass2']);
 	}
-	header("Location:index.php?href=login");
+	if ($_GET['action'] == "validation" && isset($_GET['token']))
+	{
+		valide_account($_GET['token']);
+	}
+	header("Location:index.php");
 }
 else if(isset($_GET['error']))
 {

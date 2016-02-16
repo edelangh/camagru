@@ -2,9 +2,18 @@
 require_once("model/user.model.php");
 if (isset($_GET['action']))
 {
-	if($_GET['action'] == "inscription")
-		insert_user_to_db("test", "test@test.test", "12345");
-	header("Location:index.php?href=login");
+	if ($_GET['action'] == "log" && isset($_POST['name']) && isset($_POST['password']))
+	{
+		if (connect($_POST['name'], $_POST['password']))
+		{
+			header("Location:index.php");
+		}
+		else
+		{
+			echo "erreur de connection";
+			require_once("view/login.view.php");
+		}
+	}
 }
 else
 	require_once("view/login.view.php");
