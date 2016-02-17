@@ -1,6 +1,8 @@
 <?PHP
 require_once("config/config.php");
 include("config/root.php");
+require("model/userCon.class.php");
+session_start();
 
 if (isset($_GET["href"]) && isset($GLOBALS["root"][$_GET["href"]]))
 {
