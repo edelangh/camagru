@@ -1,6 +1,7 @@
 <?php
 include("config/database.php");
+include("config/tools/mysql.php");
+$db->query('DROP DATABASE `camagru`');
 
-include("include/mysql.php");
-$bdd->query('DROP DATABASE camagru');
+echo "ok";
 ?>

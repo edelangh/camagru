@@ -1,7 +1,8 @@
 <?php
 require("config/config.php");
 require("config/root.php");
-require($root['mysql']);
+require("config/tools/mysql.php");
+
 function name_already_use($name)
 {
 	global $db;
