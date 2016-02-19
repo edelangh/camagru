@@ -1,0 +1,25 @@
+head {
+}
+
+body {
+	margin: 0 0 0 0;
+	height: 100vh;
+	display:flex;
+	flex-direction: column;
+}
+
+#header {
+	height: 5%;
+	background-image:linear-gradient(#5edae5, #2AD37F);
+}
+
+#containt {
+	background-image: url("/assets/img/site42-bg.gif");
+	background-color: #DCDCDC;
+	height: 90%;
+}
+
+#footer {
+	background-image:linear-gradient(#2AD37F, #5edae5);
+	height: 5%;
+}

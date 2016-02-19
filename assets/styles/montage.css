@@ -1,0 +1,30 @@
+
+.cliparts-containt {
+	box-shadow: 0px 0px 5px #000;
+}
+
+.grid-4 {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 50%;
+}
+
+.grid-4 > * {
+	width: calc(33% - 20px); 
+}
+
+.cliparts-radio {
+	visibility: hidden;
+	display: none;
+}
+
+.cliparts {
+	width: 100%;
+	width: 100%;
+}
+
+.cliparts-radio:checked + .cliparts {
+	background-image:radial-gradient(rgba(86, 217, 213, 1), rgba(86,217,213,0.2));
+	box-shadow: 0px 0px 5px #888888;
+}

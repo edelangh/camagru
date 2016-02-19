@@ -2,9 +2,11 @@
 
 $local_path = getcwd().'/';
 $root = [
+"header" => $local_path."view/header.view.php",
+"footer" => $local_path."view/footer.view.php",
+"login" => $local_path."controllers/login.php",
 "login" => $local_path."controllers/login.php",
 "acceuil" => $local_path."controllers/acceuil.php",
-"mysql" => $local_path."config/tools/mysql.php",
 "inscription" => $local_path."controllers/inscription.php",
 "montage" => $local_path."controllers/montage.php",
 "reinit_password" => $local_path."controllers/reinit_password.php"

@@ -1,19 +1,19 @@
 
-### Camagru
+# Camagru
 
-# controllers
+### controllers
 login
 inscription
 gallery
 profile
 montage
 
-# models
+### models
 users
 images
 
 
-# views
+### views
 login
 inscription
 gallery
@@ -21,11 +21,11 @@ profile
 montage
 
 
-# bonus
+### bonus
 js sur le formulaire d'inscription
 https
 
-# prerequire
+### prerequire
 config mamp for https:
 [generate cert in apache2/conf](http://www.akadia.com/services/ssh_test_certificate.html)
 add this to your httpd-vhost.conf of project
@@ -44,7 +44,7 @@ Include "/nfs/zfs-student-3/users/edelangh/mamp/apps/camagru/conf/httpd-vhosts.c
 
 config pour les mail:
 dans le php.ini
-	rechercher sendmail_path / decomenter la ligne et ajouter son email a la fin
+rechercher sendmail_path / decomenter la ligne et ajouter son email a la fin
 ```
 	sendmail_path = "env -i /usr/sbin/sendmail -t -i fpage@student.42.fr"
 ```

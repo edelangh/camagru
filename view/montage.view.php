@@ -1,19 +1,43 @@
 <body onload='init();'>
-<input type='button' onclick='snapshot()' value='Take snapshot'></button>
-<input type='button' onclick='send()' value='Send'></button>
+<input type='button' onclick='snapshot()' value='Snapshot'></button>
+<input type='button' onclick='send("send")' value='Send'></button>
 <img width='500px' height='400px' src=""></img>
-<video width='500px' height='400px' name='video'></video>
-<canvas width='1000px' height='1000px'></canvas>
+<video width='500px' height='400px' name='video'>
+You bower doesn't support video tags </br>
+Pliz uninstall your IE
+</video>
+<canvas width='1000px' height='1000px' style="display:none;"></canvas>
+
+<?php // Get all cliparts
+
+echo '<div class="cliparts-containt grid-4">'.PHP_EOL;
+
+$dir = "assets/cliparts/";
+$list = scandir($dir);
+
+foreach ($list as $i => $path)
+{
+	$path = $dir . $path;
+	if (preg_match("/.*\\.png/", $path))
+		echo '
+		<label>
+		<input class="cliparts-radio" type="radio"
+		name="cliparts" value="'.$path.'">
+		<img class="cliparts" src="' . $path . '">
+		</label>' . PHP_EOL;
+}
+
+echo "</div>".PHP_EOL;
+?>
 
 <script>
 'use strict'
-// <canvas width='1000px' height='1000px' style="display:none;"></canvas>
 var canvas;
 var ctx;
 var localMediaStream;
 var video;
 var img;
-	var req = new XMLHttpRequest();
+var req = new XMLHttpRequest();
 
 function init()
 {
@@ -61,40 +85,44 @@ function snapshot() {
 		canvas.height = video.videoHeight;
 		ctx.drawImage(video, 0, 0);
 		img.src = canvas.toDataURL("image/jpeg");
-
+		send("snap");
 	}
 }
 
-function send() {
-	/*
-	req.open("POST", "index.php?href=montage&type=send");
-	req.onload = function (e) {
-		console.log("load2: " + req.responseText);
-		// console.log("load2: " + req.status);
+function send(type) {
+	var json_upload = "img=" + canvas.toDataURL("image/png");
+	var xmlhttp = new XMLHttpRequest();
+
+	// Get cliparts checked
+	var radios = document.getElementsByName('cliparts');
+	var cliparts = false;
+	for (var i = 0, length = radios.length; i < length; i++) {
+		if (radios[i].checked) {
+			cliparts = radios[i].value;
+		}
 	}
-	req.onerror = function (e) {
-		console.log("Error: " + e);
+	if (!cliparts)
+	{
+		alert("You must select a cliparts");
+		return ;
 	}
-	req.send(JSON.stringify(a));
-	req.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-	req.send("lol=SALUT");
-	*/
-	var json_upload = "img=" + canvas.toDataURL("image/jpeg");
-	var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
-	xmlhttp.open("POST", "index.php?href=montage&type=send", false);
+
+	xmlhttp.open("POST", "index.php?href=montage&clean"
+		+"&type=" + type
+		+ "&cliparts=" + cliparts
+		, false);
 	xmlhttp.onload = function (e) {
 		var res;
+
 		res = xmlhttp.responseText;
-		res = res;
-		console.log("load: " + res);
-		img.src = res;
+		console.log("load: ");
+		console.log(e);
+		img.src = res + "?" + new Date().getTime();;
 	}
-	xmlhttp.onload = function (e) {
+	xmlhttp.onerror = function (e) {
 		console.log("ERROR");
 		console.log(e);
 	}
-console.log(json_upload);
-//	xmlhttp.setRequestHeader('Content-Type', 'application/upload');
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xmlhttp.send(json_upload);
 }
