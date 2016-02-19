@@ -2,6 +2,7 @@
 require("config/config.php");
 require("config/root.php");
 require($root['mysql']);
+
 function name_already_use($name)
 {
 	global $db;
@@ -14,13 +15,18 @@ function name_already_use($name)
 		return true;
 }
 
-function send_token_mail($mail)
+function createToken()
 {
-	global $LIEN_SITE;
 	$token = uniqid();
 	$chaine = "gdhjsamciomklas.ndk.lmcdusailshbhdjka";
 	$token = substr($chaine, rand(0, strlen($chaine) - 5), 5).$token;
-	$token = sha1($token);
+	return sha1($token);	
+}
+
+function send_token_mail($mail)
+{
+	global $LIEN_SITE;
+	$token = createToken();
 	$message = "Bonjour merci de cliquer sur ce lien pour valider votre compte Camagru !\n".$LIEN_SITE."index.php?href=inscription&action=validation&token=".$token;
 	if (!mail($mail, "Validation de votre compte Camagru", $message))
 		return false;
@@ -106,5 +112,49 @@ function connect($name, $password)
 	}
 }
 
+function sendMailReinitPassword($user)
+{
+	global $db;
+	global $LIEN_SITE;
+
+	$req = $db->prepare("SELECT mail FROM `camagru`.`users` WHERE name = :name");
+	$req->execute(array(":name" => $user));
+	$res = $req->fetchAll();
+	if (empty($res))
+	{
+		return false;
+	}
+	else
+	{
+		$token = createToken();
+		$message = "Bonjour vous avez demande une reinitialisation de votre mot de passe Camagru merci de cliquer sur ce lien pour continuer !\n".$LIEN_SITE."index.php?href=reinit_password&action=recup&token=".$token."\nSi vous n'avez pas effectue cette demande merci de l'ignorer.";
+		if (!mail($res[0]['mail'], "reinitialisation de votre mot de passe Camagru", $message))
+			return false;
+		else
+		{
+			$req = $db->prepare("UPDATE `camagru`.`users` SET token_recup = :token WHERE name = :name");
+			$req->execute(array(":token" => $token, ":name" => $user));
+			return true;
+		}
+	}
+}
+
+function change_password($token, $pass, $pass2)
+{
+	global $db;
+
+	if ($pass != $pass2)
+	{
+		header("Location:?href=reinit_password&action=recup&err=pass_diff&token=".$token);
+		exit();
+	}
+	if (strlen($pass) < 8)
+	{
+		header("Location:?href=reinit_password&action=recup&err=pass_court&token=".$token);
+		exit();
+	}
+	$req = $db->prepare("UPDATE `camagru`.`users` SET password = :pass, token_recup = :token WHERE token_recup = :tok");
+	$req->execute(array(":pass" => sha1($pass), ":token" => 'c', ":tok" => "$token"));
+}
 
 ?>

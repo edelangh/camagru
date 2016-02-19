@@ -4,6 +4,7 @@ if (!isset($_SESSION['user']))
 ?>
 <a href="?href=inscription">Inscription</a>
 <a href="?href=login">Connection</a>
+<a href="?href=reinit_password">Mot de passe oublie ?</a>
 
 <?php
 }
