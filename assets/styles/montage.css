@@ -28,3 +28,28 @@
 	background-image:radial-gradient(rgba(86, 217, 213, 1), rgba(86,217,213,0.2));
 	box-shadow: 0px 0px 5px #888888;
 }
+
+.left-containt {
+    border: 1px solid red;
+    width: 73%;
+}
+
+.snapshot {
+	width:40%;
+	height: 400px;
+    margin-left: 10%;
+}
+
+.video {
+	width: 40%;
+	height: 400px;
+	float: left;
+	padding-top: 20px;
+	padding-right: 5px;
+	padding-left: 5px;
+
+}
+
+.videoAndImage {
+	border: 1px solid red;
+}
