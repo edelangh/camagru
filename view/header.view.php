@@ -22,6 +22,7 @@ else
 {
 	?>
 <a href="?href=login&action=logout">Deconnection</a>
+<a href="?href=montage">Montage</a>
 <?php
 }
 if (isset($_SESSION['user']))

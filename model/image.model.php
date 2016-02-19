@@ -15,14 +15,12 @@ class Comments
 	public $comments;
 	public $description;
 	public $likes;
-	public $unlikes;
 
 	public function __contruct()
 	{
 		$this->comments = [];
 		$this->description = "";
 		$this->likes = [];
-		$this->unlikes = [];
 	}
 
 	public function comment($user, $comment)
@@ -33,6 +31,20 @@ class Comments
 	public function getComments()
 	{
 		return ($this->comments);
+	}
+
+	public function like($user_id)
+	{
+		$this->likes[$user_id] = 1;
+	}
+
+	public function unlike($user_id)
+	{
+		$this->likes[$user_id] = 0;
+	}
+	public function getLikes()
+	{
+		return ($this->likes);
 	}
 }
 
@@ -80,6 +92,42 @@ function load_images_by_user_id($user_id)
 	$req->execute(array(':user_id' => $user_id));
 	$tab = $req->fetchAll();
 	return $tab;
+}
+
+function like_image($id, $user_id)
+{
+	global $db;
+
+	$req = $db->prepare("SELECT * FROM `camagru`.`images` WHERE `id` = :id");
+	$req->execute(array(':id' => $id));
+	$img = $req->fetch();
+
+	$comment = unserialize($img['comment']);
+	$comment->like($user_id);
+	$comment_json = serialize($comment);
+
+	$req = $db->prepare("UPDATE `camagru`.`images`
+		SET comment=:comment
+		WHERE `id`=:id");
+	$req->execute(array(':id' => $id, ':comment' => $comment_json));
+}
+
+function unlike_image($id, $user_id)
+{
+	global $db;
+
+	$req = $db->prepare("SELECT * FROM `camagru`.`images` WHERE `id` = :id");
+	$req->execute(array(':id' => $id));
+	$img = $req->fetch();
+
+	$comment = unserialize($img['comment']);
+	$comment->unlike($user_id);
+	$comment_json = serialize($comment);
+
+	$req = $db->prepare("UPDATE `camagru`.`images`
+		SET comment=:comment
+		WHERE `id`=:id");
+	$req->execute(array(':id' => $id, ':comment' => $comment_json));
 }
 
 function comment_image($id, $user, $message)

@@ -2,3 +2,15 @@
 img {
 	width: 20%;
 }
+
+.like, .unlike {
+	width: 3%;
+}
+
+.navbar {
+	text-align: center;
+}
+
+.navbar a {
+	padding: 10px;
+}
