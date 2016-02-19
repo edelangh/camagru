@@ -24,6 +24,16 @@ class Comments
 		$this->likes = [];
 		$this->unlikes = [];
 	}
+
+	public function comment($user, $comment)
+	{
+		$message = $user . ": ". $comment;
+		$this->comments[] = $message;
+	}
+	public function getComments()
+	{
+		return ($this->comments);
+	}
 }
 
 function save_image($user_id, $name, $data)
@@ -39,7 +49,7 @@ function save_image($user_id, $name, $data)
 	$path = $IMAGES_PATH ."/". $timestamp . "." . $user_id .".". $name . ".png";
 
 	$comment = new Comments();
-	$comment_json = json_encode($comment);
+	$comment_json = serialize($comment);
 
 	$req = $db->prepare("INSERT INTO `camagru`.`images` (`user_id`, `name`, `comment`, `path`, `timestamp`) VALUES (:user_id, :name, :comment, :path, :timestamp)");
 	$req->execute(array(
@@ -52,6 +62,16 @@ function save_image($user_id, $name, $data)
 	return ($path);
 }
 
+function load_images()
+{
+	global $db;
+
+	$req = $db->prepare("SELECT * FROM `camagru`.`images`");
+	$req->execute();
+	$tab = $req->fetchAll();
+	return $tab;
+}
+
 function load_images_by_user_id($user_id)
 {
 	global $db;
@@ -60,6 +80,24 @@ function load_images_by_user_id($user_id)
 	$req->execute(array(':user_id' => $user_id));
 	$tab = $req->fetchAll();
 	return $tab;
+}
+
+function comment_image($id, $user, $message)
+{
+	global $db;
+
+	$req = $db->prepare("SELECT * FROM `camagru`.`images` WHERE `id` = :id");
+	$req->execute(array(':id' => $id));
+	$img = $req->fetch();
+
+	$comment = unserialize($img['comment']);
+	$comment->comment($user, $message);
+	$comment_json = serialize($comment);
+
+	$req = $db->prepare("UPDATE `camagru`.`images`
+		SET comment=:comment
+		WHERE `id`=:id");
+	$req->execute(array(':id' => $id, ':comment' => $comment_json));
 }
 
 function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, $src_w, $src_h, $pct){ 

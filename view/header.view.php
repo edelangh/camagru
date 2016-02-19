@@ -2,11 +2,12 @@
 	<title>Camagru</title>
 	<link rel="stylesheet" href="assets/styles/styles.css">
 	<link rel="stylesheet" href="assets/styles/montage.css">
+	<link rel="stylesheet" href="assets/styles/acceuil.css">
 </head>
 <body>
 <div id='header'>
- HEADER
 
+<a href="?href=acceuil">HOME</a>
 <?php
 if (!isset($_SESSION['user']))
 {
