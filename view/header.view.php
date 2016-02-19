@@ -1,6 +1,7 @@
 <head>
 	<title>Camagru</title>
 	<link rel="stylesheet" href="assets/styles/styles.css">
+	<link rel="stylesheet" href="assets/styles/montage.css">
 </head>
 <body>
 <div id='header'>

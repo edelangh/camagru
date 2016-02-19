@@ -1,9 +1,34 @@
 <body onload='init();'>
-<input type='button' onclick='snapshot()' value='Take snapshot'></button>
+<input type='button' onclick='snapshot()' value='Snapshot'></button>
 <input type='button' onclick='send("send")' value='Send'></button>
 <img width='500px' height='400px' src=""></img>
-<video width='500px' height='400px' name='video'></video>
+<video width='500px' height='400px' name='video'>
+You bower doesn't support video tags </br>
+Pliz uninstall your IE
+</video>
 <canvas width='1000px' height='1000px' style="display:none;"></canvas>
+
+<?php // Get all cliparts
+
+echo '<div class="cliparts-containt grid-4">'.PHP_EOL;
+
+$dir = "assets/cliparts/";
+$list = scandir($dir);
+
+foreach ($list as $i => $path)
+{
+	$path = $dir . $path;
+	if (preg_match("/.*\\.png/", $path))
+		echo '
+		<label>
+		<input class="cliparts-radio" type="radio"
+		name="cliparts" value="'.$path.'">
+		<img class="cliparts" src="' . $path . '">
+		</label>' . PHP_EOL;
+}
+
+echo "</div>".PHP_EOL;
+?>
 
 <script>
 'use strict'
@@ -68,7 +93,24 @@ function send(type) {
 	var json_upload = "img=" + canvas.toDataURL("image/png");
 	var xmlhttp = new XMLHttpRequest();
 
-	xmlhttp.open("POST", "index.php?href=montage&clean&type=" + type, false);
+	// Get cliparts checked
+	var radios = document.getElementsByName('cliparts');
+	var cliparts = false;
+	for (var i = 0, length = radios.length; i < length; i++) {
+		if (radios[i].checked) {
+			cliparts = radios[i].value;
+		}
+	}
+	if (!cliparts)
+	{
+		alert("You must select a cliparts");
+		return ;
+	}
+
+	xmlhttp.open("POST", "index.php?href=montage&clean"
+		+"&type=" + type
+		+ "&cliparts=" + cliparts
+		, false);
 	xmlhttp.onload = function (e) {
 		var res;
 

@@ -5,6 +5,8 @@ require_once("model/image.model.php");
 if (isset($_GET['type']))
 {
 	$type = $_GET['type'];
+	$cliparts_path = $_GET['cliparts'];
+
 	if ($type == 'send' || $type == 'snap')
 	{
 		$data = $_POST['img'];
@@ -20,7 +22,7 @@ if (isset($_GET['type']))
 			file_put_contents($path, $data);
 		else
 			$path = save_image(0, "kuti", $data);
-		imagefusion($path, "assets/cliparts/wow.png", $path);
+		imagefusion($path, $cliparts_path, $path);
 		echo $path;
 	}
 	else
