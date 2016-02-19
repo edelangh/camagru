@@ -38,13 +38,14 @@
 	?>
 </center>
 </div>
+<div class="galerie_montage">
 <?PHP
 	require_once("model/image.model.php");
 	 $imgs = load_images_by_user_id(0);
 	 foreach ($imgs as $i => $img)
 	 	echo "<img src='" . $img["path"]  . "'></img></br>";
 ?>
-
+</div>
 
 <script>
 'use strict'
