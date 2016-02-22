@@ -14,11 +14,11 @@ function init()
 							  navigator.mozGetUserMedia ||
 							  navigator.msGetUserMedia);
 
-	canvas = document.querySelector('canvas');
+	canvas = document.querySelector('#canvas-hidden');
 	ctx = canvas.getContext('2d');
 	localMediaStream = null;
-	video = document.querySelector('video');
-	img = document.querySelector('img');
+	video = document.querySelector('.video');
+	img = document.querySelector('.snapshot');
 	if (navigator.getUserMedia) {
 		navigator.getUserMedia (
 			{

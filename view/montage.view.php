@@ -1,12 +1,12 @@
 <body onload='init();'>
 
 <div class="left-containt">
-<div class = "videoAndImage">
+<div class="videoAndImage">
 	<video class="video" name='video'>
 	You bower doesn't support video tags </br>
 	Pliz uninstall your IE
 	</video>
-	<canvas width='1000px' height='1000px' style="display:none;"></canvas>
+	<canvas id="canvas-hidden" width='1000px' height='1000px' style="display:none;"></canvas>
 	</br>
 	<img class="snapshot" src=""></img>
 	</br>
@@ -42,8 +42,12 @@
 <?PHP
 	require_once("model/image.model.php");
 	 $imgs = load_images_by_user_id(0);
-	 foreach ($imgs as $i => $img)
-	 	echo "<img src='" . $img["path"]  . "'></img></br>";
+	foreach ($imgs as $i => $img)
+	{
+		if ($i >= 4)
+			break ;
+		echo "<img src='" . $img["path"]  . "'></img></br>";
+	}
 ?>
 </div>
 

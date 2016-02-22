@@ -26,7 +26,10 @@ $imgs = load_images();
 $page = isset($_GET['page']) ? $_GET['page'] * 1 : 1;
 $img_nbr = isset($_GET['nbr']) ? $_GET['nbr'] * 1 : 3;
 
-$page_count = floor(count($imgs) / $img_nbr) + 1;
+if (count($imgs) % $img_nbr == 0)
+	$page_count = floor(count($imgs) / $img_nbr);
+else
+	$page_count = floor(count($imgs) / $img_nbr + 1);
 $imgs = array_slice($imgs, ($page - 1) * $img_nbr, $img_nbr);
 
 if (!$clean)
