@@ -81,6 +81,7 @@ function load_images()
 	$req = $db->prepare("SELECT * FROM `camagru`.`images`");
 	$req->execute();
 	$tab = $req->fetchAll();
+	$tab = array_reverse($tab);
 	return $tab;
 }
 
@@ -91,6 +92,7 @@ function load_images_by_user_id($user_id)
 	$req = $db->prepare("SELECT * FROM `camagru`.`images` WHERE `user_id` = :user_id");
 	$req->execute(array(':user_id' => $user_id));
 	$tab = $req->fetchAll();
+	$tab = array_reverse($tab);
 	return $tab;
 }
 

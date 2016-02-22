@@ -6,30 +6,33 @@
 </head>
 <body>
 <div id='header'>
-
-<a href="?href=acceuil">HOME</a>
+<table id='header-table'>
+<tr>
+<td><a href="?href=acceuil"><img class="navbar-img home-img" src="assets/img/home.png"></a></td>
 <?php
 if (!isset($_SESSION['user']))
 {
 ?>
-<a href="?href=inscription">Inscription</a>
-<a href="?href=login">Connection</a>
-<a href="?href=reinit_password">Mot de passe oublie ?</a>
+<td><a href="?href=inscription">Inscription</a></td>
+<td><a href="?href=login">Connection</a></td>
+<td><a href="?href=reinit_password">Mot de passe oublie ?</a></td>
 
 <?php
 }
 else
 {
-	?>
-<a href="?href=login&action=logout">Deconnection</a>
-<a href="?href=montage">Montage</a>
+?>
+<td><a href="?href=montage">Montage</a></td>
 <?php
 }
 if (isset($_SESSION['user']))
 {
 	$user = new userCon($_SESSION['user']);
-	echo "bonjour ".$user->getName();
+//	echo "bonjour ".$user->getName();
+	echo '<td><a href="?href=profile">Profile</a></td>';
 }
 ?>
+<td><a href="?href=login&action=logout">Deconnection</a></td>
+</tr></table>
 </div>
 <div id='containt'>

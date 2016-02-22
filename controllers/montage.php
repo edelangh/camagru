@@ -1,6 +1,9 @@
 <?PHP
 
 require_once("model/image.model.php");
+require_once("model/user.model.php");
+
+force_login();
 
 if (isset($_GET['type']))
 {

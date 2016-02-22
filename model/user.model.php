@@ -157,4 +157,16 @@ function change_password($token, $pass, $pass2)
 	$req->execute(array(":pass" => sha1($pass), ":token" => 'c', ":tok" => "$token"));
 }
 
+function force_login()
+{
+	$user = false;
+	if (isset($_SESSION['user']))
+	{
+		$user = new userCon($_SESSION['user']);
+	}
+	if (!$user)
+	{
+		header("Location: index.php?href=login");
+	}
+}
 ?>
