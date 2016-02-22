@@ -1,7 +1,19 @@
 body {
+	-webkit-transition: width 1s;
 	min-height: 100%;
 	margin: 0 0 0 0;
 	background-image: url("/assets/img/site42-bg.gif");
+
+	font-family: Courier, monospace;
+}
+
+#table-form-div {
+	text-align: center;
+}
+#table-form {
+	float: middle;
+	margin: 0 auto;
+	text-align: right;
 }
 
 #header {
@@ -10,8 +22,10 @@ body {
 }
 
 #containt {
+	/*
 	background-image: url("/assets/img/site42-bg.gif");
-	background-color: #DCDCDC;
+	bacground-color: #DCDCDC;
+	*/
 }
 
 #footer {

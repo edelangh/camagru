@@ -1,6 +1,8 @@
 <?PHP
+echo "<table class='acceuil-table'>";
 foreach ($imgs as $i => $img)
 {
+	///////////// IMAGE ///////////////
 	$comment = unserialize($img["comment"]);
 	$comments = $comment->getComments();
 	$id = $img['id'];
@@ -9,11 +11,11 @@ foreach ($imgs as $i => $img)
 	$likes = $comment->getLikes();
 	$like = isset($likes) ? array_sum($likes) : 0;
 
-	echo "<div class='content'>";
-	echo "<div class='img-content'>";
+	echo "<tr>";
+	echo "<td class='img-case'>";
 	echo "<img src='" . $img['path']  . "'></img>";
 	echo "</br>";
-
+	///////////// LIKE ///////////////
 	echo $like;
 	if (!isset($user_id))
 	{
@@ -30,18 +32,19 @@ foreach ($imgs as $i => $img)
 			echo "<img class='unlike' src='assets/img/unlike.jpg'
 			onclick='unlike(".$id.")'></img>";
 	}
-	echo "</div>";
-	echo "<div class='comment-content'>";
+	///////////// COMMENT ///////////////
+	echo "</td>";
+	echo "<td class='comment-case'>";
 	if ($comments)
 		foreach ($comments as $y => $message)
 			echo "<div class='comment'>" . $message  . "</div>";
-	echo "</div>";
 	if (isset($_SESSION['user']))
 		echo "<input type='text' id='message-".$id."' name='message'>
 		<input type='button' onclick='post_comment(".$id.")' value='post'>";
-	echo "</div>";
-	echo "</br>".PHP_EOL;
+	echo "</td>";
+	echo "</tr>";
 }
+echo "</table>";
 ?>
 
 <?PHP // Page navbar
@@ -50,5 +53,4 @@ for ($i = 1; $i <= $page_count; ++$i)
 	echo "<a href='?href=acceuil&page=".$i."'> ".$i." </a>" . PHP_EOL;
 echo "</div>"
 ?>
-
 <script type="text/javascript" src="assets/js/acceuil_comment.js"></script>

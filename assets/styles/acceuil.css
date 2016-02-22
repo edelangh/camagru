@@ -1,10 +1,26 @@
-
-img {
-	width: 20%;
+.acceuil-table td {
+	border: 1px solid black;
 }
 
-.like, .unlike {
-	width: 3%;
+.img-case img {
+	width: 100%;
+}
+
+.img-case {
+	width: 10%;
+}
+
+.comment-case {
+	width: 90%;
+}
+
+.empty-img {
+	width:100%;
+}
+
+.acceuil-table td .like,
+.acceuil-table td .unlike {
+	width: 40%;
 }
 
 .navbar {

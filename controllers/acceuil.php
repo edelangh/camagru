@@ -30,5 +30,10 @@ $page_count = floor(count($imgs) / $img_nbr) + 1;
 $imgs = array_slice($imgs, ($page - 1) * $img_nbr, $img_nbr);
 
 if (!$clean)
-	require_once("view/acceuil.view.php");
+{
+	if (count($imgs) > 0)
+		require_once("view/acceuil.view.php");
+	else
+		require_once("view/acceuil_empty.view.php");
+}
 ?>

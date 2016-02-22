@@ -1,6 +1,9 @@
 
 # Camagru
 
+### TODO
+Indiquer une erreur si la base de donnee n'est pas installee
+
 ### controllers
 login
 inscription
@@ -20,13 +23,12 @@ gallery
 profile
 montage
 
-
 ### bonus
 js sur le formulaire d'inscription
 https
 
 ### prerequire
-config mamp for https:
+####config mamp for https:
 [generate cert in apache2/conf](http://www.akadia.com/services/ssh_test_certificate.html)
 add this to your httpd-vhost.conf of project
 

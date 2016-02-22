@@ -10,7 +10,7 @@ if (isset($_GET['action']))
 		}
 		else
 		{
-			echo "erreur de connection";
+			echo "login/password are bad or doesn't exist";
 			require_once("view/login.view.php");
 		}
 	}
