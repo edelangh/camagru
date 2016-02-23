@@ -17,7 +17,11 @@ if (isset($_GET['type']))
 		list(, $data)      = explode(',', $data, 2);
 		$data = str_replace(' ', '+', $data);
 		$data = base64_decode($data);
-
+/*
+$path = $_FILES["image"]["tmp_name"];
+$img = imagecreatefrompng($path);
+imagepng($img, "out.png");
+ */
 		global $IMAGES_PATH;
 
 		$path = $IMAGES_PATH . "/0.png";

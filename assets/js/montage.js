@@ -19,6 +19,8 @@ function init()
 	localMediaStream = null;
 	video = document.querySelector('.video');
 	img = document.querySelector('.snapshot');
+	document.getElementById('files').addEventListener('change', handleFileSelect, false);
+
 	if (navigator.getUserMedia) {
 		navigator.getUserMedia (
 			{
@@ -44,7 +46,24 @@ function init()
 	} else {
 		console.log("getUserMedia not supported");
 	}
-	snapshot();
+}
+
+function handleFileSelect(evt) {
+	var files = evt.target.files; // FileList object
+
+	// files is a FileList of File objects. List some properties.
+	for (var i = 0, f; f = files[i]; i++) {
+		var reader = new FileReader();
+		reader.addEventListener("load", function (event) {
+			var picFile = event.target;
+			var div = document.createElement("div");
+			img.src = picFile.result;
+			
+			ctx.drawImage(img, 0, 0);
+			send("snap");
+		});
+		reader.readAsDataURL(f);
+	}
 }
 
 function snapshot() {
@@ -83,12 +102,16 @@ function send(type) {
 		var res;
 
 		res = xmlhttp.responseText;
-		console.log("load: ");
-		console.log(e);
-		img.src = res + "?" + new Date().getTime();;
+		img.src = res + "?" + new Date().getTime();
+		if (type == "send")
+		{
+			var newimg = document.createElement("img");
+			var gal = document.querySelector(".galerie_montage");
+			newimg.src = res;
+			gal.insertBefore(newimg, gal.childNodes[0]);
+		}
 	}
 	xmlhttp.onerror = function (e) {
-		console.log("ERROR");
 		console.log(e);
 	}
 	xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
