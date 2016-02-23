@@ -17,18 +17,19 @@ function checkUserName()
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
-			if (xhr.reponseText == true)
-				elem.style.background == "green";
-			else
-				elem.style.background == "red";
 		}
 	};
 	xhr.onload = function (e) {
+			if (xhr.reponseText == "ok")
+				elem.style.background = "green";
+			else
+				elem.style.background = "red";
 		console.log("name: " + xhr.responseText);
 	};
 	xhr.open("POST", "index.php?href=inscription&action=js&clean", false);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	xhr.send("name=" + JSON.stringify(elem.value));
+	console.log(xhr);
 }
 
 
