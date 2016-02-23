@@ -6,11 +6,6 @@
 	You bower doesn't support video tags </br>
 	Pliz uninstall your IE
 	</video>
-<!--
-<form method="post" action="index.php?href=montage&clean&type=upload" enctype="multipart/form-data">
--->
-	<input type="file" name="image" />
-	<input type="button" onclick='send("upload")' value="Envoyer" />
 	<canvas id="canvas-hidden" width='1000px' height='1000px' style="display:none;"></canvas>
 	</br>
 	<img class="snapshot" src=""></img>
