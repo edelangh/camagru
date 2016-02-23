@@ -26,6 +26,10 @@ montage
 ### bonus
 js sur le formulaire d'inscription
 https
+params: nbr dans l'url pour choissir la taille de la pagination
+snapshot: avant de send la photo
+unlike
+perso
 
 ### prerequire
 ####config mamp for https:
