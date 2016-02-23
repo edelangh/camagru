@@ -96,6 +96,15 @@ function load_images_by_user_id($user_id)
 	return $tab;
 }
 
+function delete_image($id, $user_id)
+{
+	global $db;
+
+	$req = $db->prepare("DELETE FROM `camagru`.`images`
+		WHERE `id`=:id AND `user_id`=:user_id");
+	$req->execute(array(':id' => $id, ':user_id' => $user_id));
+}
+
 function like_image($id, $user_id)
 {
 	global $db;

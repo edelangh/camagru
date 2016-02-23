@@ -45,7 +45,8 @@ echo "</div>".PHP_EOL;
 <div class="galerie_montage">
 <?PHP
 require_once("model/image.model.php");
-$imgs = load_images_by_user_id(0);
+$imgs = load_images_by_user_id($user->getId());
+
 foreach ($imgs as $i => $img)
 {
 	if ($i >= 4)

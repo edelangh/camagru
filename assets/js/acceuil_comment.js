@@ -59,6 +59,30 @@ function like(id)
 		xmlhttp.send("id="+id);
 }
 
+function delete_image(id)
+{
+	var xmlhttp = new XMLHttpRequest();
+	var page = getParameterByName("page");
+	page = page ? page : 1;
+
+	xmlhttp.open("POST", "index.php?href=acceuil&clean"
+				 + "&action=delete"
+				 + "&page=" + page
+			, false);
+		xmlhttp.onload = function (e)
+		{
+			console.log("success");
+			location.reload();
+		}
+		xmlhttp.onerror = function (e)
+		{
+			console.log("error");
+			console.log(e);
+		}
+		xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		xmlhttp.send("id="+id);
+}
+
 function post_comment(id)
 {
 	var input = document.querySelector("#message-"+id);

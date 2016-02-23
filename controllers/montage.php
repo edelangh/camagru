@@ -5,6 +5,10 @@ require_once("model/user.model.php");
 
 force_login();
 
+unset($user);
+if (isset($_SESSION['user']))
+	$user = new userCon($_SESSION['user']);
+
 if (isset($_GET['type']))
 {
 	$type = $_GET['type'];
@@ -24,11 +28,12 @@ imagepng($img, "out.png");
  */
 		global $IMAGES_PATH;
 
-		$path = $IMAGES_PATH . "/0.png";
+		$id = $user->getId();
+		$path = $IMAGES_PATH . "/".$id.".png";
 		if ($type == 'snap')
 			file_put_contents($path, $data);
 		else
-			$path = save_image(0, "kuti", $data);
+			$path = save_image($id, $user->getName(), $data);
 		imagefusion($path, $cliparts_path, $path);
 		echo $path;
 	}

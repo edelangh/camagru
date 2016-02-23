@@ -22,6 +22,9 @@
 .acceuil-table td .unlike {
 	width: 40%;
 }
+.acceuil-table td .delete {
+	width: 25%;
+}
 
 .navbar {
 	text-align: center;
