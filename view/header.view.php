@@ -31,8 +31,6 @@ if (isset($_SESSION['user']))
 //	echo "bonjour ".$user->getName();
 	echo '<td><a href="?href=profile">Profile</a></td>';
 	echo '<td><a href="?href=login&action=logout">Deconnection</a></td>';
-
-	}
 	echo '<td><a href="?href=perso">Perso</a></td>';
 }
 ?>
