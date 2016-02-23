@@ -20,15 +20,15 @@ function checkUserName()
 		}
 	};
 	xhr.onload = function (e) {
-			if (xhr.reponseText == "ok")
+			if (xhr.responseText == "ok")
 				elem.style.background = "green";
 			else
 				elem.style.background = "red";
-		console.log("name: " + xhr.responseText);
+		console.log(xhr.responseText);
 	};
 	xhr.open("POST", "index.php?href=inscription&action=js&clean", false);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send("name=" + JSON.stringify(elem.value));
+	xhr.send("name=" + elem.value);
 	console.log(xhr);
 }
 
