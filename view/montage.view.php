@@ -6,11 +6,6 @@
 	You bower doesn't support video tags </br>
 	Pliz uninstall your IE
 	</video>
-<!--
-<form method="post" action="index.php?href=montage&clean&type=upload" enctype="multipart/form-data">
--->
-	<input type="file" name="image" />
-	<input type="button" onclick='send("upload")' value="Envoyer" />
 	<canvas id="canvas-hidden" width='1000px' height='1000px' style="display:none;"></canvas>
 	</br>
 	<img class="snapshot" src=""></img>
@@ -50,7 +45,8 @@ echo "</div>".PHP_EOL;
 <div class="galerie_montage">
 <?PHP
 require_once("model/image.model.php");
-$imgs = load_images_by_user_id(0);
+$imgs = load_images_by_user_id($user->getId());
+
 foreach ($imgs as $i => $img)
 {
 	if ($i >= 4)

@@ -168,6 +168,8 @@ function force_login()
 	if (!$user)
 	{
 		header("Location: index.php?href=login");
+		return (false);
 	}
+	return(true);
 }
 ?>

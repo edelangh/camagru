@@ -46,6 +46,16 @@ if ($action && $user)
 			echo "Un probleme est survenue lors de l'envoie du mail" . PHP_EOL;
 		*/
 	}
+	else if ($action == 'delete')
+	{
+		delete_image($id, $user->getId());
+		/*
+		$mail_message = "Vous venez de supprimer une de vos image.\n"
+						.$LIEN_SITE."index.php?href=acceuil&page=".$page."\n";
+		if (!mail($user->getEmail(), "Suppression image", $mail_message))
+			echo "Un probleme est survenue lors de l'envoie du mail" . PHP_EOL;
+		*/
+	}
 }
 
 if (count($imgs) % $img_nbr == 0)
@@ -57,7 +67,7 @@ $imgs = array_slice($imgs, ($page - 1) * $img_nbr, $img_nbr);
 if (!$clean)
 {
 	if (count($imgs) > 0)
-		require_once("view/acceuil.view.php");
+		require_once("view/gallery.view.php");
 	else
 		require_once("view/acceuil_empty.view.php");
 }
