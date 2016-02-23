@@ -6,12 +6,17 @@ if (isset($_GET['action']))
 	if($_GET['action'] == "valide" && isset($_POST['name']) && isset($_POST['mail']) && isset($_POST['pass']) && isset($_POST['pass2']))
 	{
 		insert_user_to_db($_POST['name'], $_POST['mail'], $_POST['pass'], $_POST['pass2']);
+	header("Location:index.php");
 	}
 	if ($_GET['action'] == "validation" && isset($_GET['token']))
 	{
 		valide_account($_GET['token']);
-	}
 	header("Location:index.php");
+	}
+	if ($_GET['action'] == 'js' && isset($_POST['name']))
+	{
+		echo "<div id='res'>".name_already_use($_POST['name'])."</div>";
+	}
 }
 else if(isset($_GET['error']))
 {
@@ -27,7 +32,7 @@ else if(isset($_GET['error']))
 		echo "Une erreur a ete rencontre lors de l'envois du mail.";
 	require_once("view/inscription.view.php");
 }
-else
+else if (!isset($_GET['clean']))
 	require_once("view/inscription.view.php");
 
 ?>

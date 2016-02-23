@@ -64,6 +64,7 @@ function insert_user_to_db($name, $mail, $pass, $pass2)
 		header("Location:?href=inscription&error=err_mail");
 		exit();
 	}
+
 	$req = $db->prepare("INSERT INTO `camagru`.`users` (`name`, `mail`, `password`, `token_verif`) VALUES (:name, :mail, :pass, :token)");
 	$req->execute(array(
 		':name' => $name,
