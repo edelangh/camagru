@@ -1,4 +1,7 @@
 <?PHP
+
+$href = isset($_GET["href"]) ? $_GET["href"] : "acceuil";
+
 echo "<table class='acceuil-table'>";
 foreach ($imgs as $i => $img)
 {
@@ -54,7 +57,7 @@ echo "</table>";
 <?PHP // Page navbar
 echo "<div class='navbar'>" . PHP_EOL;
 for ($i = 1; $i <= $page_count; ++$i)
-	echo "<a href='?href=acceuil&page=".$i."'> ".$i." </a>" . PHP_EOL;
+	echo "<a href='?href=".$href."&page=".$i."'> ".$i." </a>" . PHP_EOL;
 echo "</div>"
 ?>
 <script type="text/javascript" src="assets/js/acceuil_comment.js"></script>
