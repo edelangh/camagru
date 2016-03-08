@@ -17,7 +17,10 @@
 </div>
 
 
-Upload local file: <input type="file" id="files" accept="image/*" data-buttonText="Upload local image" />
+<div>
+Upload local file:
+<input type="file" id="files" accept="image/*" data-buttonText="Upload local image" />
+</div>
 
 <center>
 <?php // Get all cliparts

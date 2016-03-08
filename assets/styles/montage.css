@@ -11,7 +11,7 @@
 }
 
 .grid-4 > * {
-	width: calc(10% - 20px); 
+	width: calc(80px); 
 }
 
 .cliparts-radio {
@@ -20,8 +20,7 @@
 }
 
 .cliparts {
-	width: 100%;
-	width: 100%;
+	width: 80px;
 }
 
 .cliparts-radio:checked + .cliparts {
@@ -35,14 +34,14 @@
 }
 
 .snapshot {
-	width:40%;
-	height: 400px;
+	width: 40%;
+	height: 30%;
     margin-left: 10%;
 }
 
 .video {
 	width: 40%;
-	height: 400px;
+	height: 30%;
 	float: left;
 	padding-top: 20px;
 	padding-right: 5px;
