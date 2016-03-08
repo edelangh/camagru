@@ -16,6 +16,7 @@ if (isset($_GET["href"]) && isset($GLOBALS["root"][$_GET["href"]]))
 		require_once($body);
 	} catch (PDOException $e) {
 		echo $e->getMessage();
+		$_SESSION = array(); // Disconnect all session
 		header("Location:index.php?href=inscription&error=db");
 		exit();
 	} catch (Exception $e) {
