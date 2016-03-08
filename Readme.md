@@ -3,8 +3,6 @@
 
 ### TODO
 Indiquer une erreur si la base de donnee n'est pas installee
-injection
-config/setup.php
 
 ### controllers
 login

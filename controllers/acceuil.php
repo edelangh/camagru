@@ -10,14 +10,13 @@ unset($user);
 if (isset($_SESSION['user']))
 	$user = new userCon($_SESSION['user']);
 
-
 if ($action && $user)
 {
 	$action = $_GET['action'];
 	$id = $_POST['id'];
 	if ($action == 'comment')
 	{
-		$message = $_POST['message'];
+		$message = htmlentities($_POST['message']);
 		comment_image($id, $user->getName(), $message);
 
 		$mail_message = "Bonjour l'une de vos images a recus un commentaire !\n"

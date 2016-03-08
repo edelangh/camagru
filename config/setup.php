@@ -1,10 +1,16 @@
 <?php
-include("config/database.php");
-include("config/tools/mysql.php");
-$db->query('CREATE DATABASE camagru');
+include("database.php");
+include("tools/mysql.php");
 
+echo "Init DATABASE: ";
+	$db->query('CREATE DATABASE camagru');
+echo "OK </br>";
+
+echo "Init User Table: ";
 $db->query('CREATE TABLE `camagru`.`users` ( `id` INT(10) NOT NULL AUTO_INCREMENT , `name` VARCHAR(255) NOT NULL , `mail` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL , `token_verif` VARCHAR(255) NOT NULL, `token_recup` VARCHAR(255) NOT NULL ,UNIQUE (`id`))');
+echo "OK </br>";
 
+echo "Init Image Table: ";
 $db->query('CREATE TABLE `camagru`.`images` (
 	`id` INT NOT NULL AUTO_INCREMENT ,
 	`user_id` INT NOT NULL ,
@@ -13,5 +19,5 @@ $db->query('CREATE TABLE `camagru`.`images` (
 	`path` VARCHAR(255) NOT NULL ,
 	`timestamp` TIMESTAMP NOT NULL ,
 	UNIQUE (`id`)) ENGINE = InnoDB;');
-echo "ok";
+echo "OK </br>";
 ?>

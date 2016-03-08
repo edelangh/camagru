@@ -40,8 +40,12 @@ body {
 	text-align: center;
 }
 
+.navbar {
+	font-size: 80%;
+}
+
 .navbar-img {
-	width: 12%;
+	width: 50px;
 }
 
 #containt {
