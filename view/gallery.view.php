@@ -13,13 +13,15 @@ foreach ($imgs as $i => $img)
 		$user_id = $user->getId();
 	$likes = $comment->getLikes();
 	$like = isset($likes) ? array_sum($likes) : 0;
-
-	echo "<tr>";
-	echo "<td class='img-case'>";
-	echo "<img src='" . $img['path']  . "'></img>";
-	echo "</br>";
-	///////////// LIKE ///////////////
-	echo $like;
+?>
+	<tr>
+	<td class='img-case'>
+	<img src="<?php echo $img['path']; ?>"></img>
+	</br>
+	<span class='like-count'>
+		<?php echo $like; ?>
+	</span>
+<?PHP
 	if (!isset($user_id))
 	{
 		echo "<a href='?href=inscription'>
@@ -57,7 +59,7 @@ echo "</table>";
 <?PHP // Page navbar
 echo "<div class='navbar'>" . PHP_EOL;
 for ($i = 1; $i <= $page_count; ++$i)
-	echo "<a href='?href=".$href."&page=".$i."'> ".$i." </a>" . PHP_EOL;
+	echo "<a href='?href=".$href."&page=".$i."&nbr=".$nbr."'> ".$i." </a>" . PHP_EOL;
 echo "</div>"
 ?>
 <script type="text/javascript" src="assets/js/acceuil_comment.js"></script>

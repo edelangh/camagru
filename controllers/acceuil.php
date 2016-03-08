@@ -5,7 +5,7 @@ require_once("model/image.model.php");
 $action = isset($_GET['action']);
 $imgs = load_images();
 $page = isset($_GET['page']) ? $_GET['page'] * 1 : 1;
-$img_nbr = isset($_GET['nbr']) ? $_GET['nbr'] * 1 : 3;
+$nbr = isset($_GET['nbr']) ? $_GET['nbr'] * 1 : 3;
 unset($user);
 if (isset($_SESSION['user']))
 	$user = new userCon($_SESSION['user']);
@@ -57,11 +57,11 @@ if ($action && $user)
 	}
 }
 
-if (count($imgs) % $img_nbr == 0)
-	$page_count = floor(count($imgs) / $img_nbr);
+if (count($imgs) % $nbr == 0)
+	$page_count = floor(count($imgs) / $nbr);
 else
-	$page_count = floor(count($imgs) / $img_nbr + 1);
-$imgs = array_slice($imgs, ($page - 1) * $img_nbr, $img_nbr);
+	$page_count = floor(count($imgs) / $nbr + 1);
+$imgs = array_slice($imgs, ($page - 1) * $nbr, $nbr);
 
 if (!$clean)
 {

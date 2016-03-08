@@ -1,10 +1,16 @@
+@font-face {
+	font-family: Lobster;
+	src: url("/assets/font-family/Lobster.otf");
+}
+
 body {
 	-webkit-transition: width 1s;
 	min-height: 100%;
 	margin: 0 0 0 0;
 	background-image: url("/assets/img/site42-bg.gif");
 
-	font-family: Courier, monospace;
+	font-family: Lobster;
+	/*font-family: Courier, monospace;*/
 }
 
 #table-form-div {

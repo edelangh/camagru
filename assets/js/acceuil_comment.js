@@ -11,15 +11,18 @@ function getParameterByName(name, url) {
 		return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-function unlike(id)
+function get_xmlhttp(action)
 {
 	var xmlhttp = new XMLHttpRequest();
 	var page = getParameterByName("page");
+	var nbr = getParameterByName("page");
+	nbr = nbr ? nbr : 3;
 	page = page ? page : 1;
 
 	xmlhttp.open("POST", "index.php?href=acceuil&clean"
-				 + "&action=unlike"
+				 + "&action=" + action
 				 + "&page=" + page
+				 + "&nbr=" + nbr
 			, false);
 		xmlhttp.onload = function (e)
 		{
@@ -32,79 +35,35 @@ function unlike(id)
 			console.log(e);
 		}
 		xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xmlhttp.send("id="+id);
+		return (xmlhttp);
+}
+
+function unlike(id)
+{
+	var xmlhttp = get_xmlhttp("unlike");
+
+	xmlhttp.send("id="+id);
 }
 
 function like(id)
 {
-	var xmlhttp = new XMLHttpRequest();
-	var page = getParameterByName("page");
-	page = page ? page : 1;
+	var xmlhttp = get_xmlhttp("like");
 
-	xmlhttp.open("POST", "index.php?href=acceuil&clean"
-				 + "&action=like"
-				 + "&page=" + page
-			, false);
-		xmlhttp.onload = function (e)
-		{
-			console.log("success");
-			location.reload();
-		}
-		xmlhttp.onerror = function (e)
-		{
-			console.log("error");
-			console.log(e);
-		}
-		xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xmlhttp.send("id="+id);
+	xmlhttp.send("id="+id);
 }
 
 function delete_image(id)
 {
-	var xmlhttp = new XMLHttpRequest();
-	var page = getParameterByName("page");
-	page = page ? page : 1;
+	var xmlhttp = get_xmlhttp("delete");
 
-	xmlhttp.open("POST", "index.php?href=acceuil&clean"
-				 + "&action=delete"
-				 + "&page=" + page
-			, false);
-		xmlhttp.onload = function (e)
-		{
-			console.log("success");
-			location.reload();
-		}
-		xmlhttp.onerror = function (e)
-		{
-			console.log("error");
-			console.log(e);
-		}
-		xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xmlhttp.send("id="+id);
+	xmlhttp.send("id="+id);
 }
 
 function post_comment(id)
 {
 	var input = document.querySelector("#message-"+id);
 	var message = input.value;
-	var xmlhttp = new XMLHttpRequest();
-	var page = getParameterByName("page");
-	page = page ? page : 1;
+	var xmlhttp = get_xmlhttp("comment");
 
-	xmlhttp.open("POST", "index.php?href=acceuil&clean"
-				 + "&action=comment"
-				 + "&page=" + page
-			, false);
-		xmlhttp.onload = function (e)
-		{
-			console.log("success");
-			location.reload();
-		}
-		xmlhttp.onerror = function (e)
-		{
-			console.log("error");
-			console.log(e);
-		}
-		xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		xmlhttp.send("id="+id+"&message="+message);
+	xmlhttp.send("id="+id+"&message="+message);
 }
