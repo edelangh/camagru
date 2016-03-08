@@ -12,7 +12,17 @@ if (isset($_GET["href"]) && isset($GLOBALS["root"][$_GET["href"]]))
 
 	if (!$clean)
 		require_once($GLOBALS["root"]["header"]);
-	require_once($body);
+	try {
+		require_once($body);
+	} catch (PDOException $e) {
+		echo $e->getMessage();
+		header("Location:index.php?href=inscription&error=db");
+		exit();
+	} catch (Exception $e) {
+		echo $e->getMessage();
+		header("Location:index.php?href=inscription&error=else");
+		exit();
+	}
 	if (!$clean)
 		require_once($GLOBALS["root"]["footer"]);
 }

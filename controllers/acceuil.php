@@ -20,8 +20,8 @@ if ($action && $user)
 		comment_image($id, $user->getName(), $message);
 
 		$mail_message = "Bonjour l'une de vos images a recus un commentaire !\n"
-						."Pour lire le commentaire: "
-						.$LIEN_SITE."index.php?href=acceuil&page=".$page."\n";
+			."Pour lire le commentaire: "
+			.$LIEN_SITE."index.php?href=acceuil&page=".$page."\n";
 		if (!mail($user->getEmail(), "Nouveau commentaire", $mail_message))
 			echo "Un probleme est survenue lors de l'envoie du mail" . PHP_EOL;
 	}
@@ -33,7 +33,7 @@ if ($action && $user)
 						.$LIEN_SITE."index.php?href=acceuil&page=".$page."\n";
 		if (!mail($user->getEmail(), "Nouveau commentaire", $mail_message))
 			echo "Un probleme est survenue lors de l'envoie du mail" . PHP_EOL;
-		*/
+		 */
 	}
 	else if ($action == 'unlike')
 	{
@@ -43,7 +43,7 @@ if ($action && $user)
 						.$LIEN_SITE."index.php?href=acceuil&page=".$page."\n";
 		if (!mail($user->getEmail(), "Nouveau commentaire", $mail_message))
 			echo "Un probleme est survenue lors de l'envoie du mail" . PHP_EOL;
-		*/
+		 */
 	}
 	else if ($action == 'delete')
 	{
@@ -53,7 +53,7 @@ if ($action && $user)
 						.$LIEN_SITE."index.php?href=acceuil&page=".$page."\n";
 		if (!mail($user->getEmail(), "Suppression image", $mail_message))
 			echo "Un probleme est survenue lors de l'envoie du mail" . PHP_EOL;
-		*/
+		 */
 	}
 }
 

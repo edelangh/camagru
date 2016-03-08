@@ -2,6 +2,8 @@
 
 $local_path = getcwd().'/';
 $root = [
+"setup" => $local_path."config/setup.php",
+"unsetup" => $local_path."config/unsetup.php",
 "header" => $local_path."view/header.view.php",
 "footer" => $local_path."view/footer.view.php",
 "login" => $local_path."controllers/login.php",

@@ -57,7 +57,6 @@ function insert_user_to_db($name, $mail, $pass, $pass2)
 		header("Location:?href=inscription&error=small_pass");
 		exit();
 	}
-
 	$token = send_token_mail($mail);
 	if ($token == false)
 	{

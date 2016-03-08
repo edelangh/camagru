@@ -27,12 +27,16 @@ else if(isset($_GET['error']))
 		echo "Ce nom d'utilisateur est deja utilise.";
 	if ($_GET['error'] == "bad_mail")
 		echo "Votre email n'a pas l'air valide.";
-			if ($_GET['error'] == "not_same_pass")
+	if ($_GET['error'] == "not_same_pass")
 		echo "Les mots de passe ne corresponde pas.";
 	if ($_GET['error'] == "small_pass")
 		echo "Votre mot de passe est trop petit.";
 	if ($_GET['error'] == "err_mail")
 		echo "Une erreur a ete rencontre lors de l'envois du mail.";
+	if ($_GET['error'] == "db")
+		echo "Erreur liee a la base de donnee. Please: use <a href='?href=setup'>setup.php</a>";
+	if ($_GET['error'] == "else")
+		echo "Erreur inconnue interne au serveur.";
 	require_once("view/inscription.view.php");
 }
 else if (!isset($_GET['clean']))
